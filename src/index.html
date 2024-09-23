@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Panel de Control del Sistema Delivery Yochi-voy</title>
+
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="assets/icon.png" />
+
+  <link href="https://fonts.googleapis.com/css?family=Mada:300,400,500,600,700" rel="stylesheet" />
+  <script
+    src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD0EkCSp-9CseQtwRXbVvy9bhbAMAUcEzI&libraries=places"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDiukyca-NMpzoxy5hd68inYATrm18wlPQ",
+      authDomain: "deliveryapp-54574.firebaseapp.com",
+      databaseURL: "https://deliveryapp-54574-default-rtdb.firebaseio.com",
+      projectId: "deliveryapp-54574",
+      storageBucket: "deliveryapp-54574.appspot.com",
+      messagingSenderId: "239509151869",
+      appId: "1:239509151869:web:c9dd19ccf686ea20ead114",
+      measurementId: "G-RCCQB4JT47",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#ff384c" />
+</head>
+
+<body>
+  <app-root>
+    <div class="theme-loader">
+      <div class="ball-scale">
+        <div></div>
+      </div>
+    </div>
+  </app-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
+
+</html>
