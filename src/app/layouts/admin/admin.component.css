@@ -1,0 +1,64 @@
+aside.pcoded-slider.ng-sidebar {
+    top: 56px;
+}
+
+.slimscroll-wrapper,
+.scroll-window {
+    width: 100% !important;
+}
+
+.userlist-box {
+    &.show {
+        display: -webkit-box;
+    }
+
+    &.hide {
+        display: none;
+    }
+}
+
+#yochivoy-logo {
+    position: relative;
+    height: 50px;
+    object-fit: cover;
+}
+
+.active-button {
+    background-color: #00B07426 !important;
+    cursor: pointer;
+    border-radius: 6px;
+    color: #00B074 !important;
+}
+
+.tablero {
+    color: #00B074 !important;
+    font-weight: bold !important;
+    fill: #00B074 !important;
+    color: #00B074 !important;
+}
+
+button {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+.input-large {
+    width: 300px;
+    height: 50px;
+    /* O ajusta el padding si prefieres un tamaño más basado en el contenido interno */
+    padding: 12px 20px;
+}
+
+.rectangle-147_1-448 {
+    display: flex;
+}
+
+.linea-vertical {
+    height: 45px;
+    width: 0.5px;
+    background-color: rgb(133, 132, 132);
+    margin-left: 10px;
+}
