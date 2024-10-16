@@ -161,7 +161,7 @@ export class ApisService {
     fullname: string,
     coverImage: string,
     descriptions: string,
-    phone: string,city: string): Promise<any> {
+    phone: string, city: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.fireAuth.auth.createUserWithEmailAndPassword(email, password)
         .then(res => {
@@ -228,6 +228,30 @@ export class ApisService {
       });
     });
   }
+
+  public getAllReviews(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.adb.collection('reviews').get().subscribe(async (review) => {
+        let data = review.docs.map((element) => {
+          let item = element.data();
+          item.id = element.id;
+          if (item && item.uid && item.vid) {
+            item.uid.get().then(function (doc) {
+              item.uid = doc.data();
+            });
+            item.vid.get().then(function (doc) {
+              item.vid = doc.data();
+            });
+          }
+          return item;
+        });
+        resolve(data);
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
 
   public getAdmin(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
@@ -297,7 +321,7 @@ export class ApisService {
             item.uid = doc.data();
             item.uid.id = doc.id;
           });
-          if(item.dId){
+          if (item.dId) {
             item.dId.get().then(function (doc) {
               item.dId = doc.data();
               item.dId.id = doc.id;
@@ -312,7 +336,7 @@ export class ApisService {
     });
   }
 
-  
+
   public getMyOrdersVenue(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.adb
@@ -322,7 +346,7 @@ export class ApisService {
           venue => {
             let data = venue.docs.map(element => {
               let item = element.data();
-              item.uid.get().then(function(doc) {
+              item.uid.get().then(function (doc) {
                 item.uid = doc.data();
                 item.uid.id = doc.id;
               });
@@ -354,7 +378,7 @@ export class ApisService {
     };
     return this.http.post('https://onesignal.com/api/v1/notifications', body, header);
   }
-  sendNotification2(msg, title,id) {
+  sendNotification2(msg, title, id) {
     const body = {
       app_id: environment.onesignal.appId,
       include_player_ids: [id],
@@ -637,15 +661,15 @@ export class ApisService {
           data.vid = doc.data();
           data.vid.id = doc.id;
         });
-        if(data.uid){
+        if (data.uid) {
           await data.uid.get().then(function (doc) {
             data.uid = doc.data();
             data.uid.id = doc.id;
           });
         }
-        
+
         if (data && data.dId) {
-          
+
         }
         resolve(data);
       }, error => {
@@ -839,10 +863,10 @@ export class ApisService {
   }
 
   public updateOrder(id, param): Promise<any> {
-    
+
     //param.dId = this.db.collection("users").doc(param.dId);
     return new Promise<any>(async (resolve, reject) => {
-      if(param.driverId) param.dId = this.db.collection('users').doc(param.driverId);
+      if (param.driverId) param.dId = this.db.collection('users').doc(param.driverId);
       this.adb
         .collection("orders")
         .doc(id)

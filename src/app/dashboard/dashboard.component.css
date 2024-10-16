@@ -1,44 +1,130 @@
 .dashboard-container {
-    display: flex;
-    width: 100%;
-  }
-  
-  .card-dashboard {
-    flex: 1;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 10px;
-    overflow: hidden;
-  }
+  display: flex;
+  width: 100%;
+}
 
-  .clickable {
-    cursor: pointer;
-  }
-  
-  .card-content {
-    display: flex;
-    align-items: center;
-  }
-  
-  .icon-container {
-    flex-shrink: 0;
-    margin-right: 20px;
-  }
-  
-  .text-container {
-    text-align: left;
-  }
-  
-  h3 {
-    margin: 0;
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  p {
-    margin: 5px 0 0 0;
-    color: #777;
-  }
-  
+.card-dashboard {
+  flex: 1;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  overflow: hidden;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+
+.text-container {
+  text-align: left;
+}
+
+h3 {
+  margin: 0;
+  font-size: 2rem;
+  color: #333;
+}
+
+p {
+  margin: 5px 0 0 0;
+  color: #777;
+}
+
+.contenedor-userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.contenedor-userinfo span {
+  font-size: 1.2rem;
+}
+
+.contenedor-desc {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.contenedor-desc span {
+  color: rgb(109, 109, 109);
+}
+
+.contenedor-venue {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  position: relative;
+  /* Para permitir posicionamiento relativo */
+}
+
+.contenedor-venue span {
+  font-size: 1.2rem;
+  color: black;
+  font-weight: bold;
+}
+
+.contenedor-rating {
+  display: flex;
+  padding-top: 10px;
+}
+
+.image-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-container2 {
+  width: 150px;
+  /* Tamaño más grande de la imagen */
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  position: absolute;
+  /* Posición absoluta para que no afecte el flujo del diseño */
+  right: -50px;
+  /* Ajusta la posición a la derecha */
+  top: 50%;
+  /* Centra verticalmente respecto al contenedor */
+  transform: translateY(-85%);
+  /* Ajuste para centrar correctamente */
+}
+
+.image-container2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

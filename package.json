@@ -24,7 +24,7 @@
     "@angular/router": "~8.2.3",
     "@angular/service-worker": "~8.2.3",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@ng-bootstrap/ng-bootstrap": "^5.1.1",
+    "@ng-bootstrap/ng-bootstrap": "^5.3.1",
     "@nicky-lenaers/ngx-scroll-to": "^3.0.1",
     "@types/jquery": "^3.5.1",
     "angular2-notifications": "^0.7.4",

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ApisService } from '../services/apis.service';
 import * as moment from 'moment';
 import { NavigationExtras, Router } from '@angular/router';
@@ -13,6 +14,9 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   rest: any = [];
+  reviews: any = [];
+  new: boolean;
+  id: any;
   users: any = [];
   drivers: any = [];
   orders: any = [];
@@ -20,9 +24,12 @@ export class DashboardComponent implements OnInit {
   dummy = Array(10);
   ordersCanceled: any = [];
   ordersDelivered: any = [];
+  public groupedReviews: any[] = [];
+
   constructor(
     private api: ApisService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.getRest();
     this.getUsers();
@@ -32,7 +39,15 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getRest()
+    this.getRest();
+    this.getReviews();
+  }
+
+  groupReviews() {
+    const chunkSize = 4;
+    for (let i = 0; i < this.reviews.length; i += chunkSize) {
+      this.groupedReviews.push(this.reviews.slice(i, i + chunkSize));
+    }
   }
 
   getRest() {
@@ -45,6 +60,29 @@ export class DashboardComponent implements OnInit {
       console.log(error);
     });
   }
+
+  getReviews() {
+    this.api.getAllReviews().then((data) => {
+      console.log(data);
+      if (data && data.length) {
+        this.reviews = data;
+        this.groupReviews();
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+  getStars(rating: number): string {
+    const fullStar = '⭐';
+    const emptyStar = '★';
+    const maxStars = 5;
+
+    let stars = fullStar.repeat(rating) + emptyStar.repeat(maxStars - rating);
+
+    return stars;
+  }
+
 
   getUsers() {
     this.users = [];
@@ -66,19 +104,19 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  getOrdersByStatus(){
+  getOrdersByStatus() {
     this.api.getAllOrders().then((data) => {
       console.log('orders data', data);
-      
+
       data.forEach((element, i) => {
         console.log(element.status);
-        
+
         if (element.status === "canceled") {
-         
+
           this.ordersCanceled.push(element);
         }
         if (element.status === "delivered") {
-         
+
           this.ordersDelivered.push(element);
         }
       });
@@ -144,15 +182,15 @@ export class DashboardComponent implements OnInit {
     return this.api.getCurrecySymbol();
   }
 
-  redirectToOrders(): void{
+  redirectToOrders(): void {
     this.router.navigate(['/admin-orders']);
   }
 
-  redirectToRestaurants(): void{
+  redirectToRestaurants(): void {
     this.router.navigate(['/admin-restaurants']);
   }
 
-  redirectToUsers(): void{
+  redirectToUsers(): void {
     this.router.navigate(['/admin-users']);
   }
 }

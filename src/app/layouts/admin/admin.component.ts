@@ -73,7 +73,7 @@ export class AdminComponent implements OnInit {
 
   isNavbarVisible: boolean = true;
   isSideMenuVisible: boolean = true;
-  
+
 
   constructor(
     public menuItems: MenuItems,
@@ -89,7 +89,7 @@ export class AdminComponent implements OnInit {
     this.currentYear = new Date().getFullYear();
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     console.log('Ruta actual:', this.router.url);
     this.updateDateTime(); // Inicializamos la fecha y hora
     setInterval(() => {
@@ -116,43 +116,43 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/admin-dashboard']);
   }
 
-  redirectToCity(): void{
+  redirectToCity(): void {
     this.router.navigate(['/admin-cities']);
   }
 
-  redirectToRestaurants(): void{
+  redirectToRestaurants(): void {
     this.router.navigate(['/admin-restaurants']);
   }
 
-  redirectToUsers(): void{
+  redirectToUsers(): void {
     this.router.navigate(['/admin-users']);
   }
 
-  redirectToDrivers(): void{
+  redirectToDrivers(): void {
     this.router.navigate(['/admin-drivers']);
   }
 
-  redirectToOrders(): void{
+  redirectToOrders(): void {
     this.router.navigate(['/admin-orders']);
   }
 
-  redirectToBanners(): void{
+  redirectToBanners(): void {
     this.router.navigate(['/admin-banners']);
   }
 
-  redirectToCoupons(): void{
+  redirectToCoupons(): void {
     this.router.navigate(['/admin-coupons']);
   }
 
-  redirectToNotifications(): void{
+  redirectToNotifications(): void {
     this.router.navigate(['/admin-notification']);
   }
 
-  redirectToChats(): void{
+  redirectToChats(): void {
     this.router.navigate(['/admin-chats']);
   }
 
-  redirectToStats(): void{
+  redirectToStats(): void {
     this.router.navigate(['/admin-rest-stats']);
   }
 
@@ -160,9 +160,9 @@ export class AdminComponent implements OnInit {
   isActive(urls: string[]): boolean {
     const currentUrl = this.router.url;
     const isActiveRoute = urls.some(url => currentUrl.startsWith(url));
-  
-    console.log(`¿Es activa alguna de las rutas? ${isActiveRoute}`);
-  
+
+    //console.log(`¿Es activa alguna de las rutas? ${isActiveRoute}`);
+
     return isActiveRoute;
   }
 
@@ -177,7 +177,7 @@ export class AdminComponent implements OnInit {
     const timeOptions: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
     this.currentTime = date.toLocaleTimeString('es-ES', timeOptions);
   }
-  
+
 
   changeLng(lng) {
     localStorage.setItem('lng', lng);
