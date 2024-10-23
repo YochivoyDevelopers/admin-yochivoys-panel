@@ -197,34 +197,34 @@ export class RestdetailsComponent implements OnInit {
       this.totalOrders = [];
       this.totalSales = 0; // Total de todas las órdenes completadas o entregadas
       this.totalCompletedSales = 0; // Variable para las ganancias solo de las completadas o entregadas
-    
+
       if (data && data.length) {
         // Mantenemos todas las órdenes en la lista
         this.totalOrders = data;
-    
+
         this.totalOrders.forEach(element => {
           element.order = JSON.parse(element.order);
-          
+
           // Sumamos el total de todas las órdenes
           this.totalSales = this.totalSales + parseFloat(element.grandTotal);
-    
+
           // Solo sumamos a totalCompletedSales si el estado es 'completed' o 'delivered'
           if (element.status === 'completed' || element.status === 'delivered') {
             this.totalCompletedSales = this.totalCompletedSales + parseFloat(element.grandTotal);
           }
         });
-    
+
         // Convertimos los totales a valores con dos decimales
         this.totalSales = this.totalSales.toFixed(2);
         this.totalCompletedSales = this.totalCompletedSales.toFixed(2);
-    
+
         console.log('sales total (all orders) -->', this.totalSales);
         console.log('sales total (completed/delivered orders) -->', this.totalCompletedSales);
       }
     }).catch(error => {
       console.log(error);
     });
-    
+
     this.api.getRestReview(this.id).then((data) => {
       console.log(data);
       if (data && data.length) {
@@ -236,7 +236,7 @@ export class RestdetailsComponent implements OnInit {
   }
 
   getImage(cover) {
-    return cover ? cover : 'assets/icon.png';
+    return cover ? cover : 'assets/images/user.png';
   }
   getDate(date) {
     return moment(date).format('llll');
@@ -300,14 +300,14 @@ export class RestdetailsComponent implements OnInit {
     const geocoder = new google.maps.Geocoder;
     geocoder.geocode({ address: this.address }, (results, status) => {
       console.log(results, status);
-    //  if (status === 'OK' && results && results.length) {
-        this.latitude = results[0].geometry.location.lat();
-        this.longitude = results[0].geometry.location.lng();
-        console.log(`Coordenadas del restaurante: [${this.latitude}, ${this.longitude}]`);
-    //  } else {
-       // alert('Geocode was not successful for the following reason: ' + status);
-       // return false;
-    //  }
+      //  if (status === 'OK' && results && results.length) {
+      this.latitude = results[0].geometry.location.lat();
+      this.longitude = results[0].geometry.location.lng();
+      console.log(`Coordenadas del restaurante: [${this.latitude}, ${this.longitude}]`);
+      //  } else {
+      // alert('Geocode was not successful for the following reason: ' + status);
+      // return false;
+      //  }
     });
 
     if (!this.coverImage || this.coverImage === '') {
@@ -385,14 +385,14 @@ export class RestdetailsComponent implements OnInit {
     const geocoder = new google.maps.Geocoder;
     geocoder.geocode({ address: this.address }, (results, status) => {
       console.log(results, status);
-    //  if (status === 'OK' && results && results.length) {
-        this.latitude = results[0].geometry.location.lat();
-        this.longitude = results[0].geometry.location.lng();
-        console.log(`Coordenadas del restaurante: [${this.latitude}, ${this.longitude}]`);
-     // } else {
+      //  if (status === 'OK' && results && results.length) {
+      this.latitude = results[0].geometry.location.lat();
+      this.longitude = results[0].geometry.location.lng();
+      console.log(`Coordenadas del restaurante: [${this.latitude}, ${this.longitude}]`);
+      // } else {
       //  alert('Geocode was not successful for the following reason: ' + status);
       //  return false;
-    //  }
+      //  }
     });
 
     const emailfilter = /^[\w._-]+[+]?[\w._-]+@[\w.-]+\.[a-zA-Z]{2,6}$/;
@@ -456,7 +456,7 @@ export class RestdetailsComponent implements OnInit {
               this.spinner.hide();
               console.log(data);
               this.api.alerts(this.api.translate('Success'), this.api.translate('Restaurant added successfully'), 'success');
-              this.api.sendNotification(this.api.translate('Checkout New Restaurant')+' '+ + this.name, this.api.translate('New Restaurant Added')).subscribe((data) => {
+              this.api.sendNotification(this.api.translate('Checkout New Restaurant') + ' ' + + this.name, this.api.translate('New Restaurant Added')).subscribe((data) => {
                 console.log(data);
                 this.success(this.api.translate('Notications sent'));
               }, error => {

@@ -26,7 +26,8 @@
                             style="padding-top: 0 !important; padding-left: 0px;">
                             <div class="input-group mx-3 my-2">
                                 <input class="form-control border-end-0 border input-large" type="search"
-                                    placeholder="Buscar" id="example-search-input">
+                                    placeholder="Buscar" id="example-search-input"
+                                    (input)="onInputChange($event.target.value)">
                                 <span class="input-group-append">
                                     <button class="btn btn-outline-secondary bg-white border-start-0 border ms-n5"
                                         type="button">
@@ -34,6 +35,21 @@
                                     </button>
                                 </span>
                             </div>
+
+                            <!-- Div con background blanco que aparece al escribir -->
+                            <div *ngIf="searchText && filteredUsuarios && filteredUsuarios.length > 0"
+                                class="search-results mx-3"
+                                style="background-color: white; border: 1px solid #ddd; padding: 10px; position: absolute; top: 100%; left: 0; right: 0; z-index: 1000; max-height: 200px; overflow-y: auto; max-width: 600px;">
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li *ngFor="let usuario of filteredUsuarios"
+                                        style="padding: 5px 0; border-bottom: 1px solid #ddd;">
+                                        <img [src]="usuario.cover" onError="this.src='assets/images/user.png'" alt=""
+                                            width="50" height="50" style="border-radius: 50%; margin-right: 10px;">
+                                        <span style="font-size: 16px;">{{ usuario.fullname }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+
 
                             <!-- Iconos a la derecha del input -->
                             <div class="d-flex align-items-center ms-3 height: 100%">
@@ -116,7 +132,6 @@
                 </div>
             </div>
         </nav>
-
 
 
         <!-- rightbar chat end-->

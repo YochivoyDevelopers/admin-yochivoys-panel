@@ -306,6 +306,21 @@ export class ApisService {
     });
   }
 
+  public getUsersByName(searchTerm: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.adb.collection('users', ref => ref.where('fullname', '>=', searchTerm).where('fullname', '<=', searchTerm + '\uf8ff')).get()
+        .subscribe((users) => {
+          let data = users.docs.map(element => {
+            let item = element.data();
+            item.id = element.id;
+            return item;
+          });
+          resolve(data);
+        }, error => {
+          reject(error);
+        });
+    });
+  }
 
   public getAllOrders(): Promise<any> {
     return new Promise<any>((resolve, reject) => {

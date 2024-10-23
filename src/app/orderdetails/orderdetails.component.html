@@ -67,17 +67,18 @@
 
             <div class="line_div"></div>
 
-            <div class="status_detail" *ngIf="status =='completed' || status == 'delivered'">
+            <div class="status_detail" *ngIf="status =='completed' || status == 'delivered'" style="color: green">
               <div class="deliver_div">
                 {{'Delivered' | translate}}
               </div>
             </div>
-            <div class="status_detail" *ngIf="status =='rejected' || status == 'canceled'">
+            <div class="status_detail" *ngIf="status =='rejected' || status == 'canceled'" style="color: darkred">
               <div class="deliver_div">
                 {{'Your Order is' | translate}} {{status | translate}}
               </div>
             </div>
-            <div class="status_detail" *ngIf="status =='created' || status =='ongoing' || status === 'accepted'">
+            <div class="status_detail" *ngIf="status =='created' || status =='ongoing' || status === 'accepted'"
+              style="color: rgb(194, 194, 13)">
               <div class="deliver_div">
                 {{'Your Order is' | translate}} {{status | translate}}
               </div>

@@ -64,7 +64,7 @@ export class OrderdetailsComponent implements OnInit {
           this.dname = data.dId.fullname;
         }
         this.username = data.uid.fullname;
-        this.userpic = data.uid && data.uid.cover ? data.uid.cover : 'assets/icon.png';
+        this.userpic = data.uid && data.uid.cover ? data.uid.cover : 'assets/images/user.png';
         this.userAddress = data.address.address;
         this.restCover = data.vid.cover;
         this.total = data.total;

@@ -173,7 +173,7 @@
           <div class="contenedor-venue">
             <span>{{item?.vid?.name}}</span>
             <div class="image-container2">
-              <img [src]="item?.vid?.cover ? item.vid.cover : 'assets/images/user.png'" alt="Profile Image">
+              <img [src]="item?.cover ? item.cover : item?.vid?.cover" alt="Profile Image">
             </div>
           </div>
           <!-- Descripción del review -->

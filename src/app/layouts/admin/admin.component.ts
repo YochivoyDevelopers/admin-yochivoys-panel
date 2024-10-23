@@ -73,7 +73,9 @@ export class AdminComponent implements OnInit {
 
   isNavbarVisible: boolean = true;
   isSideMenuVisible: boolean = true;
-
+  searchText: string = '';
+  usuarios: any[] = [];
+  filteredUsuarios: any[] = [];
 
   constructor(
     public menuItems: MenuItems,
@@ -96,6 +98,30 @@ export class AdminComponent implements OnInit {
       this.updateDateTime(); // Actualizamos cada segundo
     }, 1000);
   }
+
+  onInputChange(searchText: string) {
+    this.searchText = searchText;
+    this.getUsuarios();
+  }
+
+  getUsuarios() {
+    this.api.getUsers().then((data) => {
+      if (data && data.length) {
+        this.usuarios = data;
+        // Asignar un valor por defecto si fullname está indefinido
+        this.filteredUsuarios = this.usuarios.filter(usuario => {
+          let nombre = usuario.fullname || "Sin nombre"; // Valor por defecto
+          return nombre.toLowerCase().includes(this.searchText.toLowerCase());
+        });
+      } else {
+        this.filteredUsuarios = [];
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+
 
   onClickedOutside(e: Event) {
     if (this.windowWidth < 768 && this.toggleOn && this.verticalNavType !== 'offcanvas') {
